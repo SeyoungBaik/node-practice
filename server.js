@@ -4,6 +4,8 @@ var exphbs = require('express-handlebars');
 var hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 8081; //heroku 
+
 
 
 var app = express();
@@ -35,11 +37,11 @@ app.use((req, res, next) => {
 
 });
 
-
+/*
 app.use((req, res, next) =>{    //이 밑으로 안넘어가네 
   res.render('maintenance.hbs');
 });
-
+*/
 app.use(express.static(__dirname + '/public')); //middleWare?
 
 app.get('/', (req, res) => {
@@ -66,6 +68,6 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(8081, () => {
-  console.log('Server is up on port 8081');
+app.listen(port, () => {
+  console.log(`Server is up on ${port}`);
 });
